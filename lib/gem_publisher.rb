@@ -1,4 +1,5 @@
 require "gem_publisher/publisher"
+require "gem_publisher/version"
 
 module GemPublisher
   def self.publish_if_updated(gemspec, version, method=:rubygems)
