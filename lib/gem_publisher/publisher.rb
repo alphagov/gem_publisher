@@ -17,8 +17,8 @@ module GemPublisher
     def publish_if_updated(method)
       return unless version_bumped?
       gem = @builder.build(@gemspec)
-      @git_remote.add_tag "v#@version"
       @pusher.push gem, method
+      @git_remote.add_tag "v#@version"
     end
 
   private
