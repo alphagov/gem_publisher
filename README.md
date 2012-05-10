@@ -24,7 +24,7 @@ In your `Rakefile`:
     require "gem_publisher"
 
     task :publish_gem do |t|
-      GemPusher.publish_if_updated YourGem::VERSION, :rubygems
+      GemPusher.publish_if_updated "yourgem.gemspec", YourGem::VERSION, :rubygems
     end
 
 You can now add `rake publish_gem` to your continuous integration server as a
