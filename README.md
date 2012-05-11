@@ -6,6 +6,8 @@ repositories.
 
 At present, *variety* means RubyGems.org or GemFury.
 
+Requires Ruby 1.9.
+
 How it works
 ------------
 
@@ -24,7 +26,8 @@ In your `Rakefile`:
     require "gem_publisher"
 
     task :publish_gem do |t|
-      GemPublisher.publish_if_updated "yourgem.gemspec", YourGem::VERSION, :rubygems
+      gem = GemPublisher.publish_if_updated("yourgem.gemspec", YourGem::VERSION, :rubygems)
+      puts "Published #{gem}" if gem
     end
 
 Use `:gemfury` instead of `:rubygems` if you want to publish to GemFury instead.

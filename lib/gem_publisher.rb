@@ -16,6 +16,9 @@ module GemPublisher
   # Method should be one of :rubygems or :gemfury, and the requisite
   # credentials for the corresponding push command line tools must exist.
   #
+  # Returns the gem file name if a gem was published; nil otherwise. A
+  # CliFacade::Error will be raised if a command fails.
+  #
   def self.publish_if_updated(gemspec, version, method=:rubygems)
     Publisher.new(gemspec, version).publish_if_updated(method)
   end
