@@ -1,4 +1,6 @@
 #!/bin/sh
 set +e
-rake test
-rake publish_gem
+rm -f Gemfile.lock
+bundle install --path "${HOME}/bundles/${JOB_NAME}"
+bundle exec rake test
+bundle exec rake publish_gem
