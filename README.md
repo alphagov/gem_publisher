@@ -27,5 +27,10 @@ In your `Rakefile`:
       GemPublisher.publish_if_updated "yourgem.gemspec", YourGem::VERSION, :rubygems
     end
 
+Use `:gemfury` instead of `:rubygems` if you want to publish to GemFury instead.
+
+This assumes that the requisite credentials have been set up so that the
+`gem push` and `fury push` commands work.
+
 You can now add `rake publish_gem` to your continuous integration server as a
 task to run after the tests pass.
