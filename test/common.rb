@@ -6,6 +6,10 @@ require "mocha"
 
 class MiniTest::Unit::TestCase
   def data_file(name)
-    File.read(File.expand_path("../data/#{name}", __FILE__))
+    File.read(data_file_path(name))
+  end
+
+  def data_file_path(name)
+    File.expand_path("../data/#{name}", __FILE__)
   end
 end

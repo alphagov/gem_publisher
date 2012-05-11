@@ -12,7 +12,7 @@ Rake::TestTask.new do |t|
 end
 
 task :publish_gem do |t|
-  gem = GemPublisher.publish_if_updated("gem_publisher.gemspec", GemPublisher::VERSION, :rubygems)
+  gem = GemPublisher.publish_if_updated("gem_publisher.gemspec", :rubygems)
   puts "Published #{gem}" if gem
 end
 

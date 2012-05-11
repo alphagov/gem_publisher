@@ -10,7 +10,7 @@ module GemPublisher
         returns(data_file("gem_build"))
 
       builder = Builder.new(cli_facade)
-      assert_equal "test_gem-0.0.2.gem", builder.build("foo.gemspec")
+      assert_equal "example-0.0.3.gem", builder.build("foo.gemspec")
     end
   end
 end

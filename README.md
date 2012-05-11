@@ -22,11 +22,10 @@ Example
 
 In your `Rakefile`:
 
-    require "your_gem/version"
     require "gem_publisher"
 
     task :publish_gem do |t|
-      gem = GemPublisher.publish_if_updated("yourgem.gemspec", YourGem::VERSION, :rubygems)
+      gem = GemPublisher.publish_if_updated("yourgem.gemspec", :rubygems)
       puts "Published #{gem}" if gem
     end
 

@@ -1,14 +1,17 @@
 require "gem_publisher/git_remote"
 require "gem_publisher/builder"
 require "gem_publisher/pusher"
+require "rubygems/specification"
 
 module GemPublisher
   class Publisher
     attr_accessor :git_remote, :builder, :pusher
 
-    def initialize(gemspec, version)
+    def initialize(gemspec)
       @gemspec = gemspec
-      @version = version
+
+      @version = eval(File.read(gemspec)).version.to_s
+
       @git_remote = GitRemote.new
       @builder    = Builder.new
       @pusher     = Pusher.new
