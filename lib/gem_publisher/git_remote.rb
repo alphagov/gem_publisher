@@ -13,7 +13,7 @@ module GemPublisher
     end
 
     def add_tag(tag_name, commit_ish = "HEAD")
-      sha1 = git("rev-parse", commit_ish)
+      sha1 = git("rev-parse", commit_ish).chomp
       git "update-ref", "refs/tags/#{tag_name}", sha1
       git "push", @remote_name, "tag", tag_name
     end

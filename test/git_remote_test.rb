@@ -19,7 +19,7 @@ module GemPublisher
       sha1 = "5294fac0c70956209494b69bc1a8c38192f6a931"
       cli_facade.stubs(:execute).
         with("git", "rev-parse", "HEAD").
-        returns(sha1)
+        returns("#{sha1}\n")
       cli_facade.expects(:execute).
         with("git", "update-ref", "refs/tags/nameoftag", sha1)
       cli_facade.expects(:execute).
