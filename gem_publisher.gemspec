@@ -8,7 +8,7 @@ gemspec = Gem::Specification.new do |s|
   s.files             = Dir.glob("{lib,test}/**/*")
   s.require_path      = 'lib'
   s.has_rdoc          = true
-  s.homepage          = 'http://github.com/threedaymonk/gem_publisher'
+  s.homepage          = 'http://github.com/alphagov/gem_publisher'
   s.authors           = ['Paul Battley']
   s.email             = "pbattley@gmail.com"
 end
