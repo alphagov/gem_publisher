@@ -1,13 +1,13 @@
 lib = File.expand_path("../lib", __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
-require 'rake'
-require 'rake/testtask'
-require 'gem_publisher'
+require "rake"
+require "rake/testtask"
+require "gem_publisher"
 
 Rake::TestTask.new do |t|
   t.libs << "test"
-  t.test_files = FileList['test/**/*_test.rb']
+  t.test_files = FileList["test/**/*_test.rb"]
   t.verbose = true
 end
 
