@@ -1,5 +1,4 @@
-Gem Publisher
-=============
+# Gem Publisher
 
 This library will assist you in automatically publishing gems to a variety of
 repositories.
@@ -8,8 +7,7 @@ At present, *variety* means RubyGems.org or GemFury.
 
 Requires Ruby 1.9.
 
-How it works
-------------
+## How it works
 
 * Checks whether the remote version tag (of the form `vX.Y.Z`) for the last
   released version is older than the current revision
@@ -17,8 +15,14 @@ How it works
 * Remotely tags the new version
 * Pushes the gem to the gem server
 
-Example
--------
+## Limitations
+
+* Only git repositories are supported
+* The remote repository must be called `origin`
+
+## Example
+
+### Via rake
 
 In your `Rakefile`:
 
