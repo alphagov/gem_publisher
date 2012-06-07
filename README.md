@@ -49,3 +49,16 @@ task to run after the tests pass.
 
 This assumes that the requisite credentials have been set up so that the
 `gem push` and `fury push` commands work.
+
+### Via command line
+
+This method obviates the need to add extra development dependencies to your
+project.
+
+    gem publish yourgem.gemspec
+
+(rubygems is the default repository) or
+
+    gem publish -r gemfury yourgem.gemspec
+
+As before, `gem push` or `fury push` must be available and configured.
