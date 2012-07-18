@@ -18,7 +18,7 @@ module GemPublisher
     end
 
     def publish_if_updated(method)
-      return unless version_bumped?
+      return if version_released?
       @builder.build(@gemspec).tap { |gem|
         @pusher.push gem, method
         @git_remote.add_tag "v#@version"
@@ -26,13 +26,12 @@ module GemPublisher
     end
 
   private
-    def version_bumped?
-      last_release = @git_remote.tags.
+    def version_released?
+      releases = @git_remote.tags.
         select { |t| t =~ /^v\d+(\.\d+)+/ }.
-        map { |t| t.scan(/\d+/).map(&:to_i) }.
-        sort.last
+        map { |t| t.scan(/\d+/).map(&:to_i) }
       this_release = @version.split(/\./).map(&:to_i)
-      this_release != last_release
+      releases.include?(this_release)
     end
 
     def tag_remote
