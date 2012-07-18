@@ -9,8 +9,9 @@ Requires Ruby 1.9.
 
 ## How it works
 
-* Checks whether the remote version tag (of the form `vX.Y.Z`) for the last
-  released version is older than the current revision
+It first checks whether a version tag (of the form `vX.Y.Z`) for the current
+version exists in the remote repository.  If the tag does not exist, it does the following:
+
 * Builds a gem for the updated version
 * Remotely tags the new version
 * Pushes the gem to the gem server
