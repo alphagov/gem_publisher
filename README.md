@@ -39,7 +39,7 @@ Use `:gemfury` instead of `:rubygems` if you want to publish to GemFury instead.
 You'll probably need to add `gem_publisher` as a development dependency in
 order to satisfy Bundler. In `{name of gem}.gemspec`, add the dependency:
 
-    s.add_development_dependency "gem_publisher", "~> 1.0.0"
+    s.add_development_dependency "gem_publisher", "~> 1.1.1"
 
 If you're using GemFury, add that too:
 
