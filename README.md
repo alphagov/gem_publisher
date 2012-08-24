@@ -29,6 +29,7 @@ In your `Rakefile`:
 
     require "gem_publisher"
 
+    desc "Publish gem to RubyGems.org"
     task :publish_gem do |t|
       gem = GemPublisher.publish_if_updated("yourgem.gemspec", :rubygems)
       puts "Published #{gem}" if gem
