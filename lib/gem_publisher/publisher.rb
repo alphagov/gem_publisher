@@ -17,10 +17,10 @@ module GemPublisher
       @pusher     = Pusher.new
     end
 
-    def publish_if_updated(method)
+    def publish_if_updated(method, options = {})
       return if version_released?
       @builder.build(@gemspec).tap { |gem|
-        @pusher.push gem, method
+        @pusher.push gem, method, options
         @git_remote.add_tag "v#@version"
       }
     end

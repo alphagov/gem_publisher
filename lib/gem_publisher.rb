@@ -21,7 +21,7 @@ module GemPublisher
   # Returns the gem file name if a gem was published; nil otherwise. A
   # CliFacade::Error will be raised if a command fails.
   #
-  def self.publish_if_updated(gemspec, method=:rubygems)
-    Publisher.new(gemspec).publish_if_updated(method)
+  def self.publish_if_updated(gemspec, method=:rubygems, options={})
+    Publisher.new(gemspec).publish_if_updated(method, options)
   end
 end

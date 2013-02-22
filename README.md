@@ -37,6 +37,10 @@ In your `Rakefile`:
 
 Use `:gemfury` instead of `:rubygems` if you want to publish to GemFury instead.
 
+To push to an account you're a [collaborator](http://devcenter.gemfury.com/articles/collaboration.html) on, you can pass the `:as` option:
+
+    GemPublisher.publish_if_updated("yourgem.gemspec", :gemfury, :as => 'otheraccount')
+
 You'll probably need to add `gem_publisher` as a development dependency in
 order to satisfy Bundler. In `{name of gem}.gemspec`, add the dependency:
 
