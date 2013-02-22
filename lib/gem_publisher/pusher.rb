@@ -11,8 +11,9 @@ module GemPublisher
       "gemfury"  => %w[fury push]
     }
 
-    def push(gem, method)
+    def push(gem, method, options = {})
       push_command = PUSH_METHODS[method.to_s] or raise "Unknown Gem push method #{method.inspect}."
+      push_command += ["--as", options[:as]] if options[:as]
       @cli_facade.execute *push_command + [gem]
     end
   end
