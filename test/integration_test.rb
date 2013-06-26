@@ -45,5 +45,16 @@ module GemPublisher
       expect_cli "git push origin tag v0.0.3"
       GemPublisher.publish_if_updated gemspec, :gemfury, :as => "foo"
     end
+
+    def test_should_build_and_tag_and_publish_to_geminabox
+      gemspec = data_file_path("example.gemspec")
+      expect_cli "git ls-remote --tags origin", data_file("tags")
+      expect_cli "gem build #{gemspec}", data_file("gem_build")
+      expect_cli "gem inabox example-0.0.3.gem --host http://gems.example.com/"
+      expect_cli "git rev-parse HEAD", "1234abcd"
+      expect_cli "git update-ref refs/tags/v0.0.3 1234abcd"
+      expect_cli "git push origin tag v0.0.3"
+      GemPublisher.publish_if_updated gemspec, :geminabox, :host => "http://gems.example.com/"
+    end
   end
 end
