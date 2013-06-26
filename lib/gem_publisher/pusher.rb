@@ -15,6 +15,7 @@ module GemPublisher
       push_command = PUSH_METHODS[method.to_s] or raise "Unknown Gem push method #{method.inspect}."
       push_command += [gem]
       push_command += ["--as", options[:as]] if options[:as]
+      push_command += ["--host", options[:host]] if options[:host]
       @cli_facade.execute *push_command
     end
   end
