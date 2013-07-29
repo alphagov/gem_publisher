@@ -33,12 +33,5 @@ module GemPublisher
       this_release = @version.split(/\./).map(&:to_i)
       releases.include?(this_release)
     end
-
-    def tag_remote
-      return
-      sha1 = `git rev-parse HEAD`
-      system "git update-ref refs/tags/v#@version #{sha1}"
-      system "git push origin tag v#@version"
-    end
   end
 end
