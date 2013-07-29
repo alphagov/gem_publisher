@@ -25,20 +25,12 @@ module GemPublisher
       }
     end
 
-  private
     def version_released?
       releases = @git_remote.tags.
         select { |t| t =~ /^v\d+(\.\d+)+/ }.
         map { |t| t.scan(/\d+/).map(&:to_i) }
       this_release = @version.split(/\./).map(&:to_i)
       releases.include?(this_release)
-    end
-
-    def tag_remote
-      return
-      sha1 = `git rev-parse HEAD`
-      system "git update-ref refs/tags/v#@version #{sha1}"
-      system "git push origin tag v#@version"
     end
   end
 end
