@@ -25,7 +25,6 @@ module GemPublisher
       }
     end
 
-  private
     def version_released?
       releases = @git_remote.tags.
         select { |t| t =~ /^v\d+(\.\d+)+/ }.
