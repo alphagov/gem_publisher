@@ -78,5 +78,13 @@ module GemPublisher
       p.git_remote.expects(:add_tag).with("v0.0.3")
       assert_equal "foo-0.0.3.gem", p.publish_if_updated(:method)
     end
+
+    ::VERSION = "0.2.3"
+    def test_should_eval_gemspec_in_root_context
+      # Previously this would pick up GemPublisher::VERSION incorrectly
+      p = Publisher.new(data_file_path("toplevel_version.gemspec"))
+
+      assert_equal "0.2.3", p.version
+    end
   end
 end
