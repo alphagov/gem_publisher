@@ -6,11 +6,12 @@ require "rubygems/specification"
 module GemPublisher
   class Publisher
     attr_accessor :git_remote, :builder, :pusher
+    attr_reader :version
 
     def initialize(gemspec)
       @gemspec = gemspec
 
-      @version = eval(File.read(gemspec)).version.to_s
+      @version = eval(File.read(gemspec), TOPLEVEL_BINDING).version.to_s
 
       @git_remote = GitRemote.new
       @builder    = Builder.new
