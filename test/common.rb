@@ -2,7 +2,7 @@ lib = File.expand_path("../../lib", __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
 require "minitest/autorun"
-require "mocha"
+require "mocha/setup"
 
 class MiniTest::Unit::TestCase
   def data_file(name)

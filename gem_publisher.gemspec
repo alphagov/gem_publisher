@@ -11,6 +11,6 @@ gemspec = Gem::Specification.new do |s|
   s.homepage          = 'http://github.com/alphagov/gem_publisher'
   s.authors           = ['Paul Battley']
   s.email             = "pbattley@gmail.com"
-  s.add_development_dependency 'mocha'
+  s.add_development_dependency 'mocha', '0.14.0'
   s.add_development_dependency 'rake'
 end
