@@ -79,6 +79,18 @@ module GemPublisher
       assert_equal "foo-0.0.3.gem", p.publish_if_updated(:method)
     end
 
+    def test_should_publish_with_custom_git_tag_prefix_if_given
+      p = Publisher.new(data_file_path("example.gemspec"))
+      p.builder = mock
+      p.builder.expects(:build).returns("foo-0.0.3.gem")
+      p.pusher = mock
+      p.pusher.expects(:push).with("foo-0.0.3.gem", :method, :tag_prefix => "prefix")
+      p.git_remote = mock
+      p.git_remote.stubs(:tags).returns(%w[prefix0.0.1 prefix0.0.2 prefix0.1.0])
+      p.git_remote.expects(:add_tag).with("prefix0.0.3")
+      assert_equal "foo-0.0.3.gem", p.publish_if_updated(:method, :tag_prefix => "prefix")
+    end
+
     ::VERSION = "0.2.3"
     def test_should_eval_gemspec_in_root_context
       # Previously this would pick up GemPublisher::VERSION incorrectly

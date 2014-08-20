@@ -19,16 +19,18 @@ module GemPublisher
     end
 
     def publish_if_updated(method, options = {})
-      return if version_released?
+      return if version_released?(options)
       @builder.build(@gemspec).tap { |gem|
+        tag_prefix = options[:tag_prefix] || 'v'
         @pusher.push gem, method, options
-        @git_remote.add_tag "v#@version"
+        @git_remote.add_tag "#{tag_prefix}#@version"
       }
     end
 
-    def version_released?
+    def version_released?(options)
+      tag_prefix = options[:tag_prefix] || 'v'
       releases = @git_remote.tags.
-        select { |t| t =~ /^v\d+(\.\d+)+/ }.
+        select { |t| t =~ /^#{tag_prefix}\d+(\.\d+)+/ }.
         map { |t| t.scan(/\d+/).map(&:to_i) }
       this_release = @version.split(/\./).map(&:to_i)
       releases.include?(this_release)
