@@ -22,6 +22,7 @@ module GemPublisher
   # CliFacade::Error will be raised if a command fails.
   #
   def self.publish_if_updated(gemspec, method=:rubygems, options={})
-    Publisher.new(gemspec).publish_if_updated(method, options)
+    publisher = Publisher.new(gemspec, tag_prefix: options.delete(:tag_prefix))
+    publisher.publish_if_updated(method, options)
   end
 end
