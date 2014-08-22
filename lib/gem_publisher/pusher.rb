@@ -11,6 +11,10 @@ module GemPublisher
       "gemfury"  => %w[fury push]
     }
 
+    # Publish the gem.
+    #
+    # Supported options:
+    #   :as - specify a shared account to publish the gem (Gemfury only)
     def push(gem, method, options = {})
       push_command = PUSH_METHODS[method.to_s] or raise "Unknown Gem push method #{method.inspect}."
       push_command += [gem]

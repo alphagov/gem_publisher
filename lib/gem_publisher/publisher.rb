@@ -21,6 +21,10 @@ module GemPublisher
       @pusher     = Pusher.new
     end
 
+    # Publish the gem if its version has changed since the last release.
+    #
+    # Supported options:
+    #   :as - specify a shared account to publish the gem (Gemfury only)
     def publish_if_updated(method, options = {})
       return if version_released?
       @builder.build(@gemspec).tap { |gem|
