@@ -30,7 +30,7 @@ module GemPublisher
       @builder.build(@gemspec).tap { |gem|
         tag_prefix = options[:tag_prefix] || 'v'
         @pusher.push gem, method, options
-        @git_remote.add_tag "#{@tag_prefix}#@version"
+        @git_remote.add_tag "#{@tag_prefix}#{@version}"
       }
     end
 
