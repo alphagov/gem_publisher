@@ -1,3 +1,7 @@
+## 1.4.0
+
+* Add a `tag_prefix` option to support tag conventions other than `v1.4.0`
+
 ## 1.3.2
 
 * Pin Mocha development dependency to fix test failures
