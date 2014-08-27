@@ -12,8 +12,8 @@ module GemPublisher
   # If a remote tag matching the version already exists, nothing is done.
   # Otherwise, the gem is built, pushed, and tagged.
   #
-  # Tags are expected to be of the form "v1.2.3", and generated tags follow
-  # this pattern.
+  # Tags are of the form "v1.2.3" by default, and generated tags follow
+  # this pattern; you can override this by passing in the :tag_prefix option.
   #
   # Method should be one of :rubygems or :gemfury, and the requisite
   # credentials for the corresponding push command line tools must exist.
@@ -22,6 +22,7 @@ module GemPublisher
   # CliFacade::Error will be raised if a command fails.
   #
   def self.publish_if_updated(gemspec, method=:rubygems, options={})
-    Publisher.new(gemspec).publish_if_updated(method, options)
+    publisher = Publisher.new(gemspec, tag_prefix: options.delete(:tag_prefix))
+    publisher.publish_if_updated(method, options)
   end
 end
