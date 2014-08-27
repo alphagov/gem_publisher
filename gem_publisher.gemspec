@@ -6,6 +6,7 @@ gemspec = Gem::Specification.new do |s|
   s.summary           = 'Automatically build, tag, and push gems'
   s.description       = 'Automatically build, tag, and push a gem when its version has been updated.'
   s.files             = Dir.glob("{lib,test}/**/*")
+  s.license           = 'MIT'
   s.require_path      = 'lib'
   s.has_rdoc          = true
   s.homepage          = 'http://github.com/alphagov/gem_publisher'
