@@ -1,3 +1,7 @@
+## 1.4.1
+
+* Add support for ruby 1.8.7
+
 ## 1.4.0
 
 * Add a `tag_prefix` option to support tag conventions other than `v1.4.0`

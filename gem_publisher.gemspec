@@ -10,8 +10,7 @@ gemspec = Gem::Specification.new do |s|
   s.require_path      = 'lib'
   s.has_rdoc          = true
   s.homepage          = 'http://github.com/alphagov/gem_publisher'
-  s.authors           = ['Paul Battley']
-  s.email             = "pbattley@gmail.com"
+  s.authors           = ['Government Digital Service']
   s.add_development_dependency 'mocha', '0.14.0'
   s.add_development_dependency 'minitest', '~> 2.5.1'
   s.add_development_dependency 'rake'
