@@ -10,7 +10,7 @@ module GemPublisher
     def expect_cli(command, response = "")
       Open3.expects(:capture3).
         with(command).
-        returns([response, "", stub(exitstatus: 0)])
+        returns([response, "", stub(:exitstatus => 0)])
     end
 
     def test_should_build_and_tag_and_publish

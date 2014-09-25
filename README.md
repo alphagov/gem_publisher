@@ -5,7 +5,7 @@ repositories.
 
 At present, *variety* means RubyGems.org or GemFury.
 
-Requires Ruby 1.9.
+Requires Ruby 1.8.7 or later.
 
 ## How it works
 
