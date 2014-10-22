@@ -9,7 +9,7 @@ class Gem::Commands::PublishCommand < Gem::Command
     defaults.merge! :gem_repository => "rubygems"
 
     add_option(
-      "-r", "--repository",
+      "-rREPOSITORY", "--repository=REPOSITORY",
       "Set the gem repository (rubygems or gemfury)",
       "Default: #{options[:gem_repository]}") do |value, options|
       options[:gem_repository] = value
