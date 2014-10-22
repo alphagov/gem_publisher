@@ -1,3 +1,7 @@
+## 1.4.2
+
+* Fix the `-r`/`--repository` option in the RubyGems plugin
+
 ## 1.4.1
 
 * Add support for ruby 1.8.7
