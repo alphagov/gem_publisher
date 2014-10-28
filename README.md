@@ -67,4 +67,8 @@ project.
 
     gem publish -r gemfury yourgem.gemspec
 
+To use a shared account to publish the gem with Gemfury, use
+
+    gem publish -r gemfury -a yoursharedaccount yourgem.gemspec
+
 As before, `gem push` or `fury push` must be available and configured.

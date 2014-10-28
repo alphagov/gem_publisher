@@ -14,6 +14,13 @@ class Gem::Commands::PublishCommand < Gem::Command
       "Default: #{options[:gem_repository]}") do |value, options|
       options[:gem_repository] = value
     end
+
+    add_option(
+      "-aAS", "--as=AS",
+      "Specify a shared account to publish the gem (gemfury only)",
+      "") do |value, options|
+      options[:as] = value
+    end
   end
 
   def usage # :nodoc:
@@ -23,7 +30,10 @@ class Gem::Commands::PublishCommand < Gem::Command
   def execute
     options[:args].each do |gemspec|
       Dir.chdir(File.dirname(gemspec)) do
-        gem = GemPublisher.publish_if_updated(File.basename(gemspec), options[:gem_repository])
+        new_opts = {}
+        new_opts[:as] = options[:as] if options[:as]
+
+        gem = GemPublisher.publish_if_updated(File.basename(gemspec), options[:gem_repository], new_opts)
 
         if gem
           $stderr.puts "Published #{gem}"
