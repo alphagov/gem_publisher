@@ -49,7 +49,7 @@ module GemPublisher
       @command.execute
     end
 
-    def test_should_use_gemfury_with_specific_user_if_requested
+    def test_should_use_specific_user_if_requested
       expected_username = "username"
 
       GemPublisher.expects(:publish_if_updated).
@@ -58,6 +58,18 @@ module GemPublisher
       $stderr.expects(:puts).with(anything)
 
       @command.handle_options ["-a", expected_username, "awesome.gemspec"]
+      @command.execute
+    end
+
+    def test_should_use_specific_user_with_long_option
+      expected_username = "username"
+
+      GemPublisher.expects(:publish_if_updated).
+          with("awesome.gemspec", 'rubygems', has_entry(:as, expected_username)).
+          returns("awesome-1.0.0.gem")
+      $stderr.expects(:puts).with(anything)
+
+      @command.handle_options ["--as", expected_username, "awesome.gemspec"]
       @command.execute
     end
   end

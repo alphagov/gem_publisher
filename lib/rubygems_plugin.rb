@@ -17,8 +17,8 @@ class Gem::Commands::PublishCommand < Gem::Command
 
     add_option(
       "-aAS", "--as=AS",
-      "Specify a shared account to publish the gem (gemfury only)",
-      "") do |value, options|
+      "Specify a shared account to publish the gem (gemfury only)"
+    ) do |value, options|
       options[:as] = value
     end
   end
