@@ -1,3 +1,7 @@
+## 1.5.0
+
+* Allow publishing to shared Gemfury accounts in the Rubygems plugin
+
 ## 1.4.2
 
 * Fix the `-r`/`--repository` option in the RubyGems plugin
