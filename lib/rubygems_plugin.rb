@@ -11,7 +11,7 @@ class Gem::Commands::PublishCommand < Gem::Command
     add_option(
       "-rREPOSITORY", "--repository=REPOSITORY",
       "Set the gem repository (rubygems or gemfury)",
-      "Default: #{options[:gem_repository]}") do |value, options|
+      "Default: #{defaults[:gem_repository]}") do |value, options|
       options[:gem_repository] = value
     end
   end
