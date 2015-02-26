@@ -12,6 +12,6 @@ gemspec = Gem::Specification.new do |s|
   s.homepage          = 'http://github.com/alphagov/gem_publisher'
   s.authors           = ['Government Digital Service']
   s.add_development_dependency 'mocha', '0.14.0'
-  s.add_development_dependency 'minitest', '~> 2.5.1'
+  s.add_development_dependency 'minitest', '~> 4.0'
   s.add_development_dependency 'rake'
 end
