@@ -39,6 +39,7 @@ module GemPublisher
       p.git_remote = mock
       p.git_remote.stubs(:tags).returns(%w[v0.0.1 v0.0.2])
       p.git_remote.expects(:add_tag).with("v0.0.3")
+      p.git_remote.expects(:add_branch).with("latest-release")
       assert_equal "foo-0.0.3.gem", p.publish_if_updated(:method)
     end
 
@@ -52,6 +53,7 @@ module GemPublisher
       p.git_remote = mock
       p.git_remote.stubs(:tags).returns(%w[v0.0.1 v0.0.2])
       p.git_remote.stubs(:add_tag)
+      p.git_remote.stubs(:add_branch)
       assert_equal "foo-0.0.3.gem", p.publish_if_updated(:method, :foo => "bar")
     end
 
@@ -64,6 +66,7 @@ module GemPublisher
       p.git_remote = mock
       p.git_remote.stubs(:tags).returns([])
       p.git_remote.expects(:add_tag).with("v0.0.3")
+      p.git_remote.expects(:add_branch).with("latest-release")
       assert_equal "foo-0.0.3.gem", p.publish_if_updated(:method)
     end
 
@@ -76,6 +79,7 @@ module GemPublisher
       p.git_remote = mock
       p.git_remote.stubs(:tags).returns(%w[v0.0.1 v0.0.2 v0.1.0])
       p.git_remote.expects(:add_tag).with("v0.0.3")
+      p.git_remote.expects(:add_branch).with("latest-release")
       assert_equal "foo-0.0.3.gem", p.publish_if_updated(:method)
     end
 
@@ -88,6 +92,20 @@ module GemPublisher
       p.git_remote = mock
       p.git_remote.stubs(:tags).returns(%w[prefix0.0.1 prefix0.0.2 prefix0.1.0])
       p.git_remote.expects(:add_tag).with("prefix0.0.3")
+      p.git_remote.expects(:add_branch).with("latest-release")
+      assert_equal "foo-0.0.3.gem", p.publish_if_updated(:method)
+    end
+
+    def test_should_publish_latest_branch_if_given
+      p = Publisher.new(data_file_path("example.gemspec"), :latest_alias_branch => "latest")
+      p.builder = mock
+      p.builder.expects(:build).returns("foo-0.0.3.gem")
+      p.pusher = mock
+      p.pusher.expects(:push).with("foo-0.0.3.gem", :method, {})
+      p.git_remote = mock
+      p.git_remote.stubs(:tags).returns(%w[v.0.1 v.0.2 v0.1.0])
+      p.git_remote.expects(:add_tag).with("v0.0.3")
+      p.git_remote.expects(:add_branch).with("latest")
       assert_equal "foo-0.0.3.gem", p.publish_if_updated(:method)
     end
 

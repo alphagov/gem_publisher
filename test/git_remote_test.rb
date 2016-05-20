@@ -28,5 +28,18 @@ module GemPublisher
       remote = GitRemote.new("origin", cli_facade)
       remote.add_tag("nameoftag")
     end
+
+    def test_should_push_branch_to_remote
+      cli_facade = mock
+      sha1 = "5294fac0c70956209494b69bc1a8c38192f6a931"
+      cli_facade.stubs(:execute).
+        with("git", "rev-parse", "HEAD").
+        returns("#{sha1}\n")
+      cli_facade.expects(:execute).
+        with("git", "push", "origin", "#{sha1}:refs/heads/nameofbranch")
+
+      remote = GitRemote.new("origin", cli_facade)
+      remote.add_branch("nameofbranch")
+    end
   end
 end

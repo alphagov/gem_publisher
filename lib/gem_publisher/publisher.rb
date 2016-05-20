@@ -10,9 +10,11 @@ module GemPublisher
 
     # Supported options:
     #   :tag_prefix - use a custom prefix for Git tags (defaults to 'v')
+    #   :latest_alias_branch - a branch to alias the most recent release (defaults to 'latest-release')
     def initialize(gemspec, options = {})
       @gemspec = gemspec
       @tag_prefix = options[:tag_prefix] || 'v'
+      @latest_alias_branch = options[:latest_alias_branch] || 'latest-release'
 
       @version = eval(File.read(gemspec), TOPLEVEL_BINDING).version.to_s
 
@@ -31,6 +33,7 @@ module GemPublisher
         tag_prefix = options[:tag_prefix] || 'v'
         @pusher.push gem, method, options
         @git_remote.add_tag "#{@tag_prefix}#{@version}"
+        @git_remote.add_branch @latest_alias_branch
       }
     end
 

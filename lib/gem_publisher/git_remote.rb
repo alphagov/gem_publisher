@@ -18,6 +18,12 @@ module GemPublisher
       git "push", @remote_name, "tag", tag_name
     end
 
+    def add_branch(branch_name, commit_ish = "HEAD")
+      sha1 = git("rev-parse", commit_ish).chomp
+      git "push", @remote_name, "#{sha1}:refs/heads/#{branch_name}"
+    end
+
+
   private
     def git(*args)
       @cli_facade.execute(*["git"] + args)

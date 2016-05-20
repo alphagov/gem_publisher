@@ -21,6 +21,8 @@ module GemPublisher
       expect_cli "git rev-parse HEAD", "1234abcd"
       expect_cli "git update-ref refs/tags/v0.0.3 1234abcd"
       expect_cli "git push origin tag v0.0.3"
+      expect_cli "git rev-parse HEAD", "1234abcd"
+      expect_cli "git push origin 1234abcd:refs/heads/latest-release"
       GemPublisher.publish_if_updated gemspec
     end
 
@@ -32,6 +34,8 @@ module GemPublisher
       expect_cli "git rev-parse HEAD", "1234abcd"
       expect_cli "git update-ref refs/tags/v0.0.3 1234abcd"
       expect_cli "git push origin tag v0.0.3"
+      expect_cli "git rev-parse HEAD", "1234abcd"
+      expect_cli "git push origin 1234abcd:refs/heads/latest-release"
       GemPublisher.publish_if_updated gemspec, :gemfury
     end
 
@@ -43,6 +47,8 @@ module GemPublisher
       expect_cli "git rev-parse HEAD", "1234abcd"
       expect_cli "git update-ref refs/tags/v0.0.3 1234abcd"
       expect_cli "git push origin tag v0.0.3"
+      expect_cli "git rev-parse HEAD", "1234abcd"
+      expect_cli "git push origin 1234abcd:refs/heads/latest-release"
       GemPublisher.publish_if_updated gemspec, :gemfury, :as => "foo"
     end
   end
