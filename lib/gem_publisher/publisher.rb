@@ -28,7 +28,6 @@ module GemPublisher
     def publish_if_updated(method, options = {})
       return if version_released?
       @builder.build(@gemspec).tap { |gem|
-        tag_prefix = options[:tag_prefix] || 'v'
         @pusher.push gem, method, options
         @git_remote.add_tag "#{@tag_prefix}#{@version}"
       }
